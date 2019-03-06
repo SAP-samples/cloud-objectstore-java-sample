@@ -1,10 +1,10 @@
-# ObjectStore Reference Application
-ObjectStore reference application is built to showcase the method of developing a multi-cloud based application using a single-code line.
+# Object Store Reference Application
+Object Store reference application is built to showcase the method of developing a multi-cloud based application using a single-code line.
 
 ## Description
-Using this reference application you can build a multi-cloud application, which can be run on SAP Cloud Platform consuming ObjectStore service with different IaaS providers underneath - e.g. AWS, GCP, OpenStack, Azure. The focus is on single-code line thereby making the application portable across different cloud providers. A java based open source library called [jclouds](https://jclouds.apache.org/) is used to abstract out the differences between different IaaS specific SDKs and provide simplified and portable APIs to develop a multi-cloud application.
+Using this reference application you can build a multi-cloud application, which can be run on SAP Cloud Platform consuming Object Store Service with different IaaS providers underneath - e.g. AWS, GCP, OpenStack, Azure. The focus is on single-code line thereby making the application portable across different cloud providers. A java based open source library called [jclouds](https://jclouds.apache.org/) is used to abstract out the differences between different IaaS specific SDKs and provide simplified and portable APIs to develop a multi-cloud application.
 
-The application uses jclouds 2.1.2. At present, the application supports objectstore service from three different IaaS providers namely: AWS S3, Google Cloud Storage(GCS) and OpenStack Swift.
+The application uses jclouds 2.1.2. At present, the application supports Object Store Service from three different IaaS providers namely: AWS S3, Google Cloud Storage(GCS) and OpenStack Swift.
 
 Following jclouds dependencies are used in the application.
 
@@ -76,11 +76,11 @@ For more information about the dependencies please refer the [pom](./pom.xml).
 - [License](#license)
 
 ## Scope of the Application
-- Support for AWS S3, GCS and OpenStack Swift ObjectStore
-- Upload a file / object to an ObjectStore
-- Download a file / object from an ObjectStore
-- Delete a file / object from an ObjectStore
-- List all the files / objects in an ObjectStore
+- Support for AWS S3, GCS and OpenStack Swift Object Store
+- Upload a file / object to an Object Store
+- Download a file / object from an Object Store
+- Delete a file / object from an Object Store
+- List all the files / objects in an Object Store
 
 ## Architecture
 
@@ -91,7 +91,7 @@ For more information about the dependencies please refer the [pom](./pom.xml).
 - [Apache Maven](https://maven.apache.org/download.cgi)
 - [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
 - [SAP Cloud Platform Global account](https://help.sap.com/viewer/e275296cbb1e4d5886fa38a2a2c78c06/Cloud/en-US/667f34ba9222450491c2b848cd17e189.html)
-- [Provision ObjectStore service](https://help.sap.com/viewer/e275296cbb1e4d5886fa38a2a2c78c06/Cloud/en-US/667f34ba9222450491c2b848cd17e189.html)
+- [Provision Object Store service](https://help.sap.com/viewer/e275296cbb1e4d5886fa38a2a2c78c06/Cloud/en-US/667f34ba9222450491c2b848cd17e189.html)
 - A Cloud Foundry user with SpaceDeveloper role to deploy the application
 
 ## Download and Installation
@@ -117,7 +117,7 @@ mvn clean install
      Enter username, password, org and space when prompted to. For more information on the same refer [link](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/75125ef1e60e490e91eb58fe48c0f9e7.html#loio4ef907afb1254e8286882a2bdef0edf4).
     
 
-  2. Create the Cloud Foundry ObjectStore Service Instance
+  2. Create the Cloud Foundry Object Store Service Instance
 
      - To run the application on AWS landscape, create a service by executing the below command:
 
@@ -185,7 +185,7 @@ Response Body: `<uploaded_filename> uploaded successfully`
 
 <b>GET</b>
 
-To get the list of a files / objects set the content-type and hit the below endpoint url. Changes the <application URL> with yours.
+To get the list of a files / objects set the content-type and hit the below endpoint url.
 
 EndPoint URL :   `https://<application URL>/objectstorage.svc/api/v1/storage/`
 
@@ -259,7 +259,7 @@ In case you find a bug, or you need additional support, please open an issue her
 - Using InpuStream instead of ByteArray to upload large files to make the read operation faster causes issues. For more information see [here](https://issues.apache.org/jira/browse/JCLOUDS-1451). 
 
 ## TO-DO
-- To provide support for Azure ObjectStore
+- To provide support for Azure Object Store
 
 ## License
 
