@@ -1,5 +1,5 @@
 # Object Store Reference Application
-Object Store reference application is built to showcase the method of developing a single code-line multi cloud application to consume Object Store service of SAP Cloud Platform Cloud Foundry Environment.
+Object Store reference application is built to showcase the method of developing a single code-line multi cloud application consuming Object Store Service of SAP Cloud Platform Cloud Foundry Environment.
 
 ## Description
 Object Store service enables the storage and management of objects, which involves creation, upload, download, and deletion of objects. SAP provides Object Store Service on its SAP Cloud Platform Cloud Foundry environment running on different IaaS providers like Amazon Web Service, Azure, Google Cloud Platform, OpenStack. [Please click here for more information on Object Store Service](https://help.sap.com/viewer/2ee77ef7ea4648f9ab2c54ee3aef0a29/Cloud/en-US/9f82aa99c6fb443495495a67b8e0f924.html).
