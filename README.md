@@ -10,9 +10,9 @@ We have developed a single code line reference application that can work with Ob
 
 #### Features of the Application
 
-•	The application creates RESTful endpoints to upload, download, delete and list files.
+•	The application provides RESTful endpoints to upload, download, delete and list files.
 
-•	The application then uploads the files to the Object Storage service. In background, JClouds library abstracts to the code to upload the different providers like AWS S3, Google Cloud Storage, OpenStack Swift.
+•	It calls jclouds library's API enpoints to perform the above operations on the files in Object Store Service. jclouds abstracts the code to perform these operation on the different providers like AWS S3, Google Cloud Storage, OpenStack Swift.
 
 ## Architecture
 
@@ -20,7 +20,7 @@ We have developed a single code line reference application that can work with Ob
 
 A single REST controller accepts the request (GET, POST, DELETE).
 
-Separate service implementations, configuration classes are provided for each of the Object Store Service provider. The right implementation, configuration is loaded by spring boot by based on the IaaS provider that the application is deployed on. 
+Separate service implementations and configuration classes are provided for each of the Object Store Service provider. The right service implementation and configuration is loaded by spring boot based on the IaaS provider that the application is deployed on. 
 
 A single DAO (Data Access Object)/ repository class calls the jclouds api’s to perform upload, download, delete operations on the Object Store. 
 
@@ -82,13 +82,13 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
 ## Download and Installation
 
 #### Build the Application
-[Clone](https://help.github.com/articles/cloning-a-repository/) the application `objectstore-sample` to your system
+- [Clone](https://help.github.com/articles/cloning-a-repository/) the application `objectstore-sample` to your system
 
-Clone URL :  `https://github.wdf.sap.corp/refapps/objectstore-sample.git`
-Navigate to the root folder of the application and run the below maven command to build the application:
-```
-mvn clean install
-```
+   Clone URL :  `https://github.wdf.sap.corp/refapps/objectstore-sample.git`
+- Navigate to the root folder of the application and run the below maven command to build the application:
+  ```
+  mvn clean install
+  ```
 
 #### Deploy the Application on Cloud Foundry
 
@@ -248,4 +248,4 @@ In case you find a bug, or you need additional support, please open an issue her
 
 ## License
 
-Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under SAP Sample Code License Agreement, except as noted otherwise in the [LICENSE](/LICENSE) file.
+Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under SAP Sample Code License Agreement, except as noted otherwise in the [LICENSE](/LICENSE) file.
