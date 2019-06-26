@@ -8,7 +8,6 @@ import org.jclouds.openstack.keystone.config.KeystoneProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
 
 import com.sap.refapps.objectstore.util.CloudProviders;
 
@@ -20,7 +19,6 @@ import com.sap.refapps.objectstore.util.CloudProviders;
 @Profile("cloud-swift")
 @Configuration
 @ConfigurationProperties(prefix = "vcap.services.objectstore-service.credentials")
-@PropertySource("classpath:application.properties")
 public class OpenstackSwiftConfiguration {
 	
 	private String authUrl;

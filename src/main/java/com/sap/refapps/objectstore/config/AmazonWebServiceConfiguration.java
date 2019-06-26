@@ -5,7 +5,6 @@ import org.jclouds.blobstore.BlobStoreContext;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
 
 import com.sap.refapps.objectstore.util.CloudProviders;
 
@@ -17,7 +16,6 @@ import com.sap.refapps.objectstore.util.CloudProviders;
 @Profile("cloud-aws")
 @Configuration
 @ConfigurationProperties(prefix = "vcap.services.objectstore-service.credentials")
-@PropertySource("classpath:application.properties")
 public class AmazonWebServiceConfiguration {
 	
 	private String accessKeyId;
