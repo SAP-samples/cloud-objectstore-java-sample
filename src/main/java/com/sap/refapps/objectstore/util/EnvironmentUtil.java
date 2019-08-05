@@ -33,9 +33,6 @@ public class EnvironmentUtil {
 		else if (servicePlan.equals(CloudProviders.PLAN_GCP.toString())) {
 			activeProfile = CloudProviders.PROFILE_GCP.toString();
 		}
-		else if (servicePlan.equals(CloudProviders.PLAN_SWIFT.toString())) {
-			activeProfile = CloudProviders.PROFILE_SWIFT.toString();
-		}
 		return activeProfile;
 	}
 	

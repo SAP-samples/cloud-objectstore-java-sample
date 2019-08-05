@@ -12,7 +12,7 @@ public class ObjectStoreContextInitializer implements ApplicationContextInitiali
 	public void initialize(ConfigurableApplicationContext applicationContext) {
 		final ConfigurableEnvironment applicationEnvironment = applicationContext.getEnvironment();
 		final String profileToActive = EnvironmentUtil.getActiveProfile();
-        // Active profile is set based on the objectore service connected to. (s3/swift etc..) 
+        // Active profile is set based on the objectore service connected to. (s3/gcs etc..) 
 		applicationEnvironment.addActiveProfile(profileToActive);
 	}
 
