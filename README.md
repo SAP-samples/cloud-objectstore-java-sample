@@ -39,16 +39,6 @@ Following jclouds dependencies are used in the application.
       <artifactId>google-cloud-storage</artifactId>
       <version>${jclouds.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.apache.jclouds.api</groupId>
-      <artifactId>openstack-swift</artifactId>
-      <version>${jclouds.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.jclouds.api</groupId>
-      <artifactId>openstack-keystone</artifactId>
-      <version>${jclouds.version}</version>
-    </dependency>
 ~~~
 The size of each of the jclouds dependencies are as follows: 
 ~~~
@@ -56,8 +46,6 @@ The size of each of the jclouds dependencies are as follows:
     -------------             -------
     aws-s3                    29kb
     google-cloud-storage      158kb
-    openstack-swift           137kb
-    openstack-keystone        294kb
 ~~~
 
 Besides spring-boot and jclouds the other dependencies used in the application are: 
@@ -112,9 +100,6 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
 
        `cf create-service objectstore gcs-standard objectstore-service`
         
-     - To run the application on OpenStack landscape, create a service by executing the below command:
-
-       `cf create-service objectstore swift-standard objectstore-service`
 
       > Important: <b>*Please don't change the service instance name i.e. `objectstore-service`*</b>
 
