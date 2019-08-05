@@ -2,7 +2,7 @@
 Object Store reference application is built to showcase the method of developing a single code-line multi cloud application consuming Object Store Service of SAP Cloud Platform Cloud Foundry Environment.
 
 ## Description
-Object Store service enables the storage and management of objects, which involves creation, upload, download, and deletion of objects. SAP provides Object Store Service on its SAP Cloud Platform Cloud Foundry environment running on different IaaS providers like Amazon Web Service, Azure, Google Cloud Platform, OpenStack. [Please click here for more information on Object Store Service](https://help.sap.com/viewer/2ee77ef7ea4648f9ab2c54ee3aef0a29/Cloud/en-US/9f82aa99c6fb443495495a67b8e0f924.html).
+Object Store service enables the storage and management of objects, which involves creation, upload, download, and deletion of objects. SAP provides Object Store Service on its SAP Cloud Platform Cloud Foundry environment running on different IaaS providers like Amazon Web Service, Azure, Google Cloud Platform. [Please click here for more information on Object Store Service](https://help.sap.com/viewer/2ee77ef7ea4648f9ab2c54ee3aef0a29/Cloud/en-US/9f82aa99c6fb443495495a67b8e0f924.html).
 
 Though the Object Store Service is provided by SAP on multiple IaaS providers, the way to connect to and use the service varies for each IaaS provider due to changes in the structure of credentials and in the configurations. Writing a single code-line application that works seamlessly on all these IaaS providers is a challenge that many developers face. 
 
@@ -12,7 +12,7 @@ We have developed a single code line reference application that can work with Ob
 
 •	The application provides RESTful endpoints to upload, download, delete and list files.
 
-•	It calls jclouds library's API endpoints to perform the above operations on the files in Object Store Service. jclouds abstracts the code to perform these operation on the different providers like AWS S3, Google Cloud Storage, OpenStack Swift.
+•	It calls jclouds library's API endpoints to perform the above operations on the files in Object Store Service. jclouds abstracts the code to perform these operation on the different providers like AWS S3, Google Cloud Storage.
 
 ## Architecture
 
@@ -39,16 +39,6 @@ Following jclouds dependencies are used in the application.
       <artifactId>google-cloud-storage</artifactId>
       <version>${jclouds.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.apache.jclouds.api</groupId>
-      <artifactId>openstack-swift</artifactId>
-      <version>${jclouds.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.jclouds.api</groupId>
-      <artifactId>openstack-keystone</artifactId>
-      <version>${jclouds.version}</version>
-    </dependency>
 ~~~
 The size of each of the jclouds dependencies are as follows: 
 ~~~
@@ -56,8 +46,6 @@ The size of each of the jclouds dependencies are as follows:
     -------------             -------
     aws-s3                    29kb
     google-cloud-storage      158kb
-    openstack-swift           137kb
-    openstack-keystone        294kb
 ~~~
 
 Besides spring-boot and jclouds the other dependencies used in the application are: 
@@ -112,9 +100,6 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
 
        `cf create-service objectstore gcs-standard objectstore-service`
         
-     - To run the application on OpenStack landscape, create a service by executing the below command:
-
-       `cf create-service objectstore swift-standard objectstore-service`
 
       > Important: <b>*Please don't change the service instance name i.e. `objectstore-service`*</b>
 
@@ -239,8 +224,6 @@ Response Body: `<file-name> deleted from ObjectStore.`
 In case you find a bug, or you need additional support, please open an issue here in GitHub.
 
 ## Known Issues
-- BlobStore removeBlob() api does not work in Jclouds OpenStack Swift and a bug is reported to jclouds team. For more information see [here](https://issues.apache.org/jira/browse/JCLOUDS-1483).
-- Multipart Upload feature is not supported in jclouds OpenStack Swift and a bug is reported to jclouds team. For more information see [here](https://issues.apache.org/jira/browse/JCLOUDS-1482).
 - Using InpuStream instead of ByteArray to upload large files to make the read operation faster causes issues. For more information see [here](https://issues.apache.org/jira/browse/JCLOUDS-1451). 
 
 ## TO-DO
