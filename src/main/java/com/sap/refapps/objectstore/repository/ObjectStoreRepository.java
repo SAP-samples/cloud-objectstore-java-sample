@@ -68,7 +68,6 @@ public class ObjectStoreRepository {
 								.userMetadata(userMetadata)
 								.build();
 
-			// Multipart upload is currently not supported since it has an issue with OpenStack Swift.
 			// multipart issue: (https://issues.apache.org/jira/browse/JCLOUDS-1064).
 			blobStore.putBlob(bucketName, blob);
 			message = fileName + ObjectStoreUtil.UPLOAD_SUCCESSFUL;

@@ -1,16 +1,19 @@
 package com.sap.refapps.objectstore.controller;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,10 +25,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.google.common.io.ByteStreams;
 import com.sap.refapps.objectstore.model.BlobFile;
 import com.sap.refapps.objectstore.service.ObjectStoreService;
 import com.sap.refapps.objectstore.util.ObjectStoreUtil;
@@ -62,22 +63,26 @@ public class ObjectstoreController {
 	@PostMapping("/storage")
 	public ResponseEntity<String> uploadFile(HttpServletRequest request) throws IOException, FileUploadException {
 
-		byte[] bytes = null;
+		byte[] byteArray = null;
 		String message = "";
-
-		try {
-			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-			Iterator<String> it = multipartRequest.getFileNames();
-			MultipartFile multipart = multipartRequest.getFile(it.next());
-			final String fileName = multipart.getOriginalFilename();
-			final String contentType = multipart.getContentType();
-			bytes = multipart.getBytes();
-			message = this.objectStoreService.uploadFile(bytes, fileName, contentType);
-
-		} catch (IOException e) {
-			logger.error(ObjectStoreUtil.UPLOAD_FAILED + e);
+		Optional<FileItemStream> fileItemStream = Optional.empty();
+		
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		
+		if(isMultipart) {
+			ServletFileUpload upload = new ServletFileUpload();
+			FileItemIterator fileItemIterator = upload.getItemIterator(request);
+			
+			while(fileItemIterator.hasNext()) {
+				fileItemStream = Optional.of(fileItemIterator.next());
+				InputStream inputStream = fileItemStream.get().openStream();
+				byteArray = ByteStreams.toByteArray(inputStream);
+				if(!fileItemStream.get().isFormField()) {
+					final String contentType = fileItemStream.get().getContentType();
+					message = objectStoreService.uploadFile(byteArray, fileItemStream.get().getName(), contentType);
+				}
+			}
 		}
-
 		return new ResponseEntity<>(message, HttpStatus.ACCEPTED);
 	}
 
@@ -144,10 +149,4 @@ public class ObjectstoreController {
 		return ResponseEntity.status(status).headers(headers).body(message);
 	}
 	
-	@Bean(name = "multipartResolver")
-	public CommonsMultipartResolver createMultipartResolver() {
-	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
-	    resolver.setDefaultEncoding("utf-8");
-	    return resolver;
-	}
 }
