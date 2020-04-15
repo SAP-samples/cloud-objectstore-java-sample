@@ -32,12 +32,12 @@ Following jclouds dependencies are used in the application.
     <dependency>
       <groupId>org.apache.jclouds.provider</groupId>
       <artifactId>aws-s3</artifactId>
-      <version>${jclouds.version}</version>
+      <version>2.2.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.jclouds.provider</groupId>
       <artifactId>google-cloud-storage</artifactId>
-      <version>${jclouds.version}</version>
+      <version>2.2.0</version>
     </dependency>
 ~~~
 The size of each of the jclouds dependencies are as follows: 
@@ -89,7 +89,13 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
         
      Enter username, password, org and space when prompted to. [Please click here for more information](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/75125ef1e60e490e91eb58fe48c0f9e7.html#loio4ef907afb1254e8286882a2bdef0edf4).
     
+     Check if the Cloud Foundry Space you will be deploying the application has the following entitlements:
 
+     | Landscape       | Service         | Plan           | Number of Instances |
+     |-----------------|-----------------|----------------|:-------------------:|
+     | AWS             | objectstore     | s3-standard    |          1          |
+     | GCP             | objectstore	 | gcs-standard   |          1          |
+  
   2. Create the Cloud Foundry Object Store Service Instance
 
      - To run the application on AWS landscape, create a service by executing the below command:
@@ -101,7 +107,7 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
        `cf create-service objectstore gcs-standard objectstore-service`
         
 
-      > Important: <b>*Please don't change the service instance name i.e. `objectstore-service`*</b>
+      > Important: <b>*Please don't change the service instance name i.e. `objectstore-service`*</b>. In case you want to choose a user defined name for the service instance other than `objectstore-service`, then make sure to use the same name at the given location: `@ConfigurationProperties(prefix = "vcap.services.<objectstore-service>.credentials")` in the following configuration classes : [AmazonWebServiceConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/AmazonWebServiceConfiguration.java) and [GoogleCloudPlatformConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/GoogleCloudPlatformConfiguration.java)
 
   3. Edit manifest.yml file. Replace the `<unique_id>` placeholder with any unique string. You can use your *SAP User ID* so that the host name is unique in the CF landscape. You can find your *SAP User ID* in [your sap.com profile](https://people.sap.com/#personal_info).
 
