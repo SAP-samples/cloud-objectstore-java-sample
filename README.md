@@ -1,4 +1,7 @@
 # Object Store Reference Application
+
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-objectstore-java-sample)](https://api.reuse.software/info/github.com/SAP-samples/cloud-objectstore-java-sample)
+
 Object Store reference application is built to showcase the method of developing a single code-line multi cloud application consuming Object Store Service of SAP Cloud Platform Cloud Foundry Environment.
 
 ## Description
