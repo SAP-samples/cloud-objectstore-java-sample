@@ -33,6 +33,10 @@ public class EnvironmentUtil {
 		else if (servicePlan.equals(CloudProviders.PLAN_GCP.toString())) {
 			activeProfile = CloudProviders.PROFILE_GCP.toString();
 		}
+		else if (servicePlan.equals(CloudProviders.PLAN_AZURE.toString())) {
+			activeProfile = CloudProviders.PROFILE_AZURE.toString();
+		}
+		
 		return activeProfile;
 	}
 	
@@ -59,10 +63,6 @@ public class EnvironmentUtil {
 			}
 		}
 		return servicePlan.get();
-	}
-	
-	public static void setActiveProfile(String activeProfile) {
-		EnvironmentUtil.activeProfile = activeProfile;
 	}
 
 }
