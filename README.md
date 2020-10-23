@@ -9,13 +9,13 @@ Object Store service enables the storage and management of objects, which involv
 
 Though the Object Store Service is provided by SAP on multiple IaaS providers, the way to connect to and use the service varies for each IaaS provider due to changes in the structure of credentials and in the configurations. Writing a single code-line application that works seamlessly on all these IaaS providers is a challenge that many developers face. 
 
-We have developed a single code line reference application that can work with Object Store Service on SAP Cloud Platform Cloud Foundry Environment hosted on multiple IaaS providers . This application perform operations like upload, download, delete and list of files. It is a spring boot application that uses [Apache jclouds](https://jclouds.apache.org/) library which provides a multi-cloud toolkit that gives a developer the freedom to create applications that are portable across IaaS providers.
+We have developed a single code line reference application that can work with Object Store Service on SAP Cloud Platform Cloud Foundry Environment hosted on multiple IaaS providers. This application performs operations like upload, download, delete and listing of files. It is a spring boot application that uses [Apache jclouds](https://jclouds.apache.org/) library which provides a multi-cloud toolkit that gives a developer the freedom to create applications that are portable across IaaS providers.
 
 #### Features of the Application
 
 •	The application provides RESTful endpoints to upload, download, delete and list files.
 
-•	It calls jclouds library's API endpoints to perform the above operations on the files in Object Store Service. jclouds abstracts the code to perform these operation on the different providers like AWS S3, Google Cloud Storage.
+•	It calls jclouds library's API endpoints to perform the above operations on the files in Object Store Service. JClouds abstracts the code to perform these operation on the different providers like AWS S3, Google Cloud Storage and Azure Storage.
 
 ## Architecture
 
@@ -25,7 +25,7 @@ A single REST controller accepts the request (GET, POST, DELETE).
 
 Separate service implementations and configuration classes are provided for each of the Object Store Service provider. The right service implementation and configuration is loaded by spring boot based on the IaaS provider that the application is deployed on. 
 
-A single DAO (Data Access Object)/ repository class calls the jclouds api’s to perform upload, download, delete operations on the Object Store. 
+A single DAO (Data Access Object)/repository class calls the jclouds api’s to perform upload, download, delete operations on the Object Store. 
 
 ## Referenced Libraries
 Following jclouds dependencies are used in the application.
@@ -35,12 +35,17 @@ Following jclouds dependencies are used in the application.
     <dependency>
       <groupId>org.apache.jclouds.provider</groupId>
       <artifactId>aws-s3</artifactId>
-      <version>2.2.0</version>
+      <version>2.2.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.jclouds.provider</groupId>
       <artifactId>google-cloud-storage</artifactId>
-      <version>2.2.0</version>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.jclouds.provider</groupId>
+      <artifactId>azureblob</artifactId>
+      <version>2.2.1</version>
     </dependency>
 ~~~
 The size of each of the jclouds dependencies are as follows: 
@@ -49,6 +54,7 @@ The size of each of the jclouds dependencies are as follows:
     -------------             -------
     aws-s3                    29kb
     google-cloud-storage      158kb
+    azureblob                 135kb
 ~~~
 
 Besides spring-boot and jclouds the other dependencies used in the application are: 
@@ -98,6 +104,7 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
      |-----------------|-----------------|----------------|:-------------------:|
      | AWS             | objectstore     | s3-standard    |          1          |
      | GCP             | objectstore	 | gcs-standard   |          1          |
+     | Azure           | objectstore	 | azure-standard |          1          |
   
   2. Create the Cloud Foundry Object Store Service Instance
 
@@ -109,8 +116,11 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
 
        `cf create-service objectstore gcs-standard objectstore-service`
         
+     - To run the application on Azure landscape, create a service by executing the below command:
 
-      > Important: <b>*Please don't change the service instance name i.e. `objectstore-service`*</b>. In case you want to choose a user defined name for the service instance other than `objectstore-service`, then make sure to use the same name at the given location: `@ConfigurationProperties(prefix = "vcap.services.<objectstore-service>.credentials")` in the following configuration classes : [AmazonWebServiceConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/AmazonWebServiceConfiguration.java) and [GoogleCloudPlatformConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/GoogleCloudPlatformConfiguration.java)
+       `cf create-service objectstore azure-standard objectstore-service`
+
+      > Important: <b>*Please don't change the service instance name i.e. `objectstore-service`*</b>. In case you want to choose a user defined name for the service instance other than `objectstore-service`, then make sure to use the same name at the given location: `@ConfigurationProperties(prefix = "vcap.services.<objectstore-service>.credentials")` in the following configuration classes : [AmazonWebServiceConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/AmazonWebServiceConfiguration.java), [GoogleCloudPlatformConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/GoogleCloudPlatformConfiguration.java) and [AzureStorageConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/AzureStorageConfiguration.java)
 
   3. Edit manifest.yml file. Replace the `<unique_id>` placeholder with any unique string. You can use your *SAP User ID* so that the host name is unique in the CF landscape. You can find your *SAP User ID* in [your sap.com profile](https://people.sap.com/#personal_info).
 
