@@ -2,14 +2,14 @@
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-objectstore-java-sample)](https://api.reuse.software/info/github.com/SAP-samples/cloud-objectstore-java-sample)
 
-Object Store reference application is built to showcase the method of developing a single code-line multi cloud application consuming Object Store Service of SAP Cloud Platform Cloud Foundry Environment.
+Object Store reference application is built to showcase the method of developing a single code-line multi cloud application consuming Object Store Service of SAP Business Technology Platform (SAP BTP) Cloud Foundry Environment.
 
 ## Description
-Object Store service enables the storage and management of objects, which involves creation, upload, download, and deletion of objects. SAP provides Object Store Service on its SAP Cloud Platform Cloud Foundry environment running on different IaaS providers like Amazon Web Service, Azure, Google Cloud Platform. [Please click here for more information on Object Store Service](https://help.sap.com/viewer/2ee77ef7ea4648f9ab2c54ee3aef0a29/Cloud/en-US/9f82aa99c6fb443495495a67b8e0f924.html).
+Object Store service enables the storage and management of objects, which involves creation, upload, download, and deletion of objects. SAP provides Object Store Service on its SAP Business Technology Platform running on different IaaS providers like Amazon Web Service, Azure, Google Cloud Platform. [Please click here for more information on Object Store Service](https://help.sap.com/viewer/2ee77ef7ea4648f9ab2c54ee3aef0a29/Cloud/en-US/9f82aa99c6fb443495495a67b8e0f924.html).
 
 Though the Object Store Service is provided by SAP on multiple IaaS providers, the way to connect to and use the service varies for each IaaS provider due to changes in the structure of credentials and in the configurations. Writing a single code-line application that works seamlessly on all these IaaS providers is a challenge that many developers face. 
 
-We have developed a single code line reference application that can work with Object Store Service on SAP Cloud Platform Cloud Foundry Environment hosted on multiple IaaS providers. This application performs operations like upload, download, delete and listing of files. It is a spring boot application that uses [Apache jclouds](https://jclouds.apache.org/) library which provides a multi-cloud toolkit that gives a developer the freedom to create applications that are portable across IaaS providers.
+We have developed a single code line reference application that can work with Object Store Service on SAP Business Technology Platform Cloud Foundry Environment hosted on multiple IaaS providers. This application performs operations like upload, download, delete and listing of files. It is a spring boot application that uses [Apache jclouds](https://jclouds.apache.org/) library which provides a multi-cloud toolkit that gives a developer the freedom to create applications that are portable across IaaS providers.
 
 #### Features of the Application
 
@@ -72,7 +72,7 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
 - [Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Apache Maven 3.3+](https://maven.apache.org/download.cgi)
 - [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
-- [SAP Cloud Platform Global account](https://help.sap.com/viewer/e275296cbb1e4d5886fa38a2a2c78c06/Cloud/en-US/667f34ba9222450491c2b848cd17e189.html)
+- [SAP Business Technology Platform Global account](https://help.sap.com/viewer/e275296cbb1e4d5886fa38a2a2c78c06/Cloud/en-US/667f34ba9222450491c2b848cd17e189.html)
 - [Provision Object Store service](https://cloudplatform.sap.com/capabilities/product-info.Object-Store-on-SAP-Cloud-Platform.55e3958b-e872-49e3-8d2c-8634d200c36a.html). It is a paid service on Cloud Foundry.
 - A Cloud Foundry user with SpaceDeveloper role to deploy the application
 
