@@ -72,8 +72,8 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
 - [Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Apache Maven 3.3+](https://maven.apache.org/download.cgi)
 - [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
-- [SAP Business Technology Platform Global account](https://help.sap.com/viewer/e275296cbb1e4d5886fa38a2a2c78c06/Cloud/en-US/667f34ba9222450491c2b848cd17e189.html)
-- [Provision Object Store service](https://cloudplatform.sap.com/capabilities/product-info.Object-Store-on-SAP-Cloud-Platform.55e3958b-e872-49e3-8d2c-8634d200c36a.html). It is a paid service on Cloud Foundry.
+- SAP Business Technology Platform Global account
+- [Provision Object Store service](https://discovery-center.cloud.sap/#/serviceCatalog/object-store-service). It is a paid service on Cloud Foundry.
 - A Cloud Foundry user with SpaceDeveloper role to deploy the application
 
 ## Download and Installation
