@@ -35,17 +35,17 @@ Following jclouds dependencies are used in the application.
     <dependency>
       <groupId>org.apache.jclouds.provider</groupId>
       <artifactId>aws-s3</artifactId>
-      <version>2.2.1</version>
+      <version>2.3.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.jclouds.provider</groupId>
       <artifactId>google-cloud-storage</artifactId>
-      <version>2.2.1</version>
+      <version>2.3.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.jclouds.provider</groupId>
       <artifactId>azureblob</artifactId>
-      <version>2.2.1</version>
+      <version>2.3.0</version>
     </dependency>
 ~~~
 The size of each of the jclouds dependencies are as follows: 
@@ -54,14 +54,12 @@ The size of each of the jclouds dependencies are as follows:
     -------------             -------
     aws-s3                    29kb
     google-cloud-storage      158kb
-    azureblob                 135kb
+    azureblob                 138kb
 ~~~
 
 Besides spring-boot and jclouds the other dependencies used in the application are: 
 
 •	jackson-databind: to parse json file
-
-•	guava: to build BlobStoreContext and to convert input stream to byte array 
 
 •	commons-fileupload: to upload files 
 
@@ -238,15 +236,12 @@ Status: 200
 
 Response Body: `<file-name> deleted from ObjectStore.`
 
-## How to Obtain Support
+## How to obtain support
 
 In case you find a bug, or you need additional support, please open an issue here in GitHub.
 
 ## Known Issues
 - Using InpuStream instead of ByteArray to upload large files to make the read operation faster causes issues. For more information see [here](https://issues.apache.org/jira/browse/JCLOUDS-1451). 
-
-## TO-DO
-- To provide support for Azure Object Store
 
 ## License
 
