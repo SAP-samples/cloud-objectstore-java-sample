@@ -5,5 +5,7 @@ applications:
   memory: 2G
   buildpack: https://github.com/cloudfoundry/java-buildpack.git
   path: target/objectstore-sample-1.0.0.jar
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
   services:
     - objectstore-service
