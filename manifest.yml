@@ -4,7 +4,7 @@ applications:
   host: objectstore-sample-svc
   memory: 2G
   buildpack: https://github.com/cloudfoundry/java-buildpack.git
-  path: target/objectstore-sample-1.0.0.jar
+  path: target/objectstore-sample-1.0.1.jar
   env:
     JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
   services:
