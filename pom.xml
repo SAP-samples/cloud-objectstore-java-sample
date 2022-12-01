@@ -5,7 +5,7 @@
 
 	<groupId>com.sap.refapps.objectstore</groupId>
 	<artifactId>objectstore-sample</artifactId>
-	<version>1.0.1</version>
+	<version>1.1.1</version>
 	<packaging>jar</packaging>
 
 	<name>objectstore-sample</name>
@@ -21,9 +21,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 		<jclouds.version>2.3.0</jclouds.version>
 		<log4j2.version>2.17.0</log4j2.version>
+		<guice.assistedinject.version>5.1.0</guice.assistedinject.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 
@@ -70,6 +71,13 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.3</version>
+		</dependency>
+		
+		<!-- guice assistedinject -->
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId> <!-- Also managed by jclouds. The version is overriden to remove illegal reflective access error caused upon jdk11 migration -->
+			<artifactId>guice-assistedinject</artifactId>
+			<version>${guice.assistedinject.version}</version>
 		</dependency>
 
 	</dependencies>

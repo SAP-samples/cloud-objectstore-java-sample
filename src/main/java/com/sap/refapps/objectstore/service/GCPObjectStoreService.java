@@ -34,7 +34,7 @@ public class GCPObjectStoreService implements ObjectStoreService {
 	public String uploadFile(byte[] bytes, String fileName, String contentType) {
 		repository.setContext(gcpConfig.getBlobStoreContext());
 		logger.info("Upload started");
-		String message = repository.uploadFile(containerName, bytes, fileName, contentType);
+		var message = repository.uploadFile(containerName, bytes, fileName, contentType);
 		logger.info("upload completed");
 		return message;
 	}
@@ -48,14 +48,14 @@ public class GCPObjectStoreService implements ObjectStoreService {
 	@Override
 	public InputStream getFile(String fileName) {
 		repository.setContext(gcpConfig.getBlobStoreContext());
-		InputStream inputStream = repository.downloadFile(containerName, fileName);
+		var inputStream = repository.downloadFile(containerName, fileName);
 		return inputStream;
 	}
 	
 	@Override
 	public boolean deleteFile(String fileName) {
 		repository.setContext(gcpConfig.getBlobStoreContext());
-		boolean blobRemove = repository.deleteFile(containerName, fileName);
+		var blobRemove = repository.deleteFile(containerName, fileName);
 		return blobRemove;
 
 	}
@@ -63,7 +63,7 @@ public class GCPObjectStoreService implements ObjectStoreService {
 	@Override
 	public boolean isBlobExist(String fileName) {
 		repository.setContext(gcpConfig.getBlobStoreContext());
-		boolean blobExist = repository.isBlobExist(containerName, fileName);
+		var blobExist = repository.isBlobExist(containerName, fileName);
 		return blobExist;
 	}
 

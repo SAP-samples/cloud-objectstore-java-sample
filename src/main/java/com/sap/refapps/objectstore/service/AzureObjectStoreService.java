@@ -33,7 +33,7 @@ public class AzureObjectStoreService implements ObjectStoreService {
 	public String uploadFile(byte[] bytes, String fileName, String contentType) {
 		repository.setContext(azureConfig.getBlobStoreContext());
 		logger.info("Upload started");
-		String message = repository.uploadFile(containerName, bytes, fileName, contentType);
+		var message = repository.uploadFile(containerName, bytes, fileName, contentType);
 		logger.info("Upload completed");
 		
 		return message;
@@ -51,7 +51,7 @@ public class AzureObjectStoreService implements ObjectStoreService {
 	@Override
 	public InputStream getFile(String fileName) {
 		repository.setContext(azureConfig.getBlobStoreContext());
-		InputStream inputStream = repository.downloadFile(containerName, fileName);
+		var inputStream = repository.downloadFile(containerName, fileName);
 		
 		return inputStream;
 	}
@@ -60,7 +60,7 @@ public class AzureObjectStoreService implements ObjectStoreService {
 	public boolean deleteFile(String fileName) {
 		repository.setContext(azureConfig.getBlobStoreContext());
 		logger.info("Deletion started");
-		boolean status = repository.deleteFile(containerName, fileName);
+		var status = repository.deleteFile(containerName, fileName);
 		logger.info("Deletion completed");
 		
 		return status;
@@ -70,7 +70,7 @@ public class AzureObjectStoreService implements ObjectStoreService {
 	@Override
 	public boolean isBlobExist(String fileName) {
 		repository.setContext(azureConfig.getBlobStoreContext());
-		boolean status = repository.isBlobExist(containerName, fileName);
+		var status = repository.isBlobExist(containerName, fileName);
 		
 		return status;
 	}

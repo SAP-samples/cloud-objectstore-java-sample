@@ -3,9 +3,11 @@ applications:
 - name: objectstore-sample-svc
   host: objectstore-sample-svc
   memory: 2G
-  buildpack: https://github.com/cloudfoundry/java-buildpack.git
-  path: target/objectstore-sample-1.0.1.jar
+  buildpack: sap_java_buildpack
+  path: target/objectstore-sample-1.1.1.jar
   env:
     JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+    JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
+    JBP_CONFIG_SAP_MACHINE_JRE: '{ jre: { version: "11.+" } }'
   services:
     - objectstore-service
