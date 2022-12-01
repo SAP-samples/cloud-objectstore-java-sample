@@ -67,10 +67,10 @@ public class ObjectstoreController {
 		String message = "";
 		Optional<FileItemStream> fileItemStream = Optional.empty();
 		
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		var isMultipart = ServletFileUpload.isMultipartContent(request);
 		
 		if(isMultipart) {
-			ServletFileUpload upload = new ServletFileUpload();
+			var upload = new ServletFileUpload();
 			FileItemIterator fileItemIterator = upload.getItemIterator(request);
 			
 			while(fileItemIterator.hasNext()) {
@@ -95,11 +95,11 @@ public class ObjectstoreController {
 	public ResponseEntity<InputStreamResource> getFile(@PathVariable(value = "name") String fileName) {
 
 		if (fileName != null) {
-			HttpHeaders respHeaders = new HttpHeaders();
+			var respHeaders = new HttpHeaders();
 
 			if (this.objectStoreService.isBlobExist(fileName)) {
 				respHeaders.setContentDispositionFormData("attachment", fileName);
-				InputStreamResource inputStreamResource = new InputStreamResource(this.objectStoreService.getFile(fileName));
+				var inputStreamResource = new InputStreamResource(this.objectStoreService.getFile(fileName));
 				return new ResponseEntity<InputStreamResource>(inputStreamResource, respHeaders, HttpStatus.OK);
 			} else {
 				return errorMessage(fileName + ObjectStoreUtil.FILE_DOESNOT_EXIST, HttpStatus.NOT_FOUND);
@@ -117,7 +117,7 @@ public class ObjectstoreController {
 	 */
 	@DeleteMapping("/storage/{name}")
 	public ResponseEntity<String> deleteFile(@PathVariable(value = "name") String fileName) {
-		String msg = ObjectStoreUtil.CANNOT_DELETE_NULL;
+		var msg = ObjectStoreUtil.CANNOT_DELETE_NULL;
 		if (fileName != null) {
 			if (this.objectStoreService.isBlobExist(fileName)) {
 				if (this.objectStoreService.deleteFile(fileName)) {
@@ -143,7 +143,7 @@ public class ObjectstoreController {
 	 * helper function to form the responseEntity
 	 */
 	private static ResponseEntity errorMessage(String message, HttpStatus status) {
-		HttpHeaders headers = new HttpHeaders();
+		var headers = new HttpHeaders();
 		headers.setContentType(org.springframework.http.MediaType.TEXT_PLAIN);
 
 		return ResponseEntity.status(status).headers(headers).body(message);

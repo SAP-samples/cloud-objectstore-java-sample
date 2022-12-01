@@ -34,7 +34,7 @@ public class AWSObjectStoreService implements ObjectStoreService {
 	public String uploadFile(byte[] bytes, String fileName, String contentType) {
 		repository.setContext(awsConfig.getBlobStoreContext());
 		logger.info("Upload started");
-		String message = repository.uploadFile(containerName, bytes, fileName, contentType);
+		var message = repository.uploadFile(containerName, bytes, fileName, contentType);
 		logger.info("upload completed");
 		return message;
 	}
@@ -48,14 +48,14 @@ public class AWSObjectStoreService implements ObjectStoreService {
 	@Override
 	public InputStream getFile(String fileName) {
 		repository.setContext(awsConfig.getBlobStoreContext());
-		InputStream inputStream = repository.downloadFile(containerName, fileName);
+		var inputStream = repository.downloadFile(containerName, fileName);
 		return inputStream;
 	}
 
 	@Override
 	public boolean deleteFile(String fileName) {
 		repository.setContext(awsConfig.getBlobStoreContext());
-		boolean status = repository.deleteFile(containerName, fileName);
+		var status = repository.deleteFile(containerName, fileName);
 		return status;
 
 	}
@@ -63,7 +63,7 @@ public class AWSObjectStoreService implements ObjectStoreService {
 	@Override
 	public boolean isBlobExist(String fileName) {
 		repository.setContext(awsConfig.getBlobStoreContext());
-		boolean status = repository.isBlobExist(containerName, fileName);
+		var status = repository.isBlobExist(containerName, fileName);
 		return status;
 	}
 }
