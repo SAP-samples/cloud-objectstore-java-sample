@@ -19,21 +19,19 @@ public class AzureObjectStoreService implements ObjectStoreService {
 
 	private final AzureStorageConfiguration azureConfig;
 	private final ObjectStoreRepository repository;
-	private final String containerName;
 	private static Logger logger = LoggerFactory.getLogger(AzureObjectStoreService.class);
 	
 	@Autowired
 	public AzureObjectStoreService(final AzureStorageConfiguration azureConfig, ObjectStoreRepository repository) {
 		this.azureConfig = azureConfig;
 		this.repository = repository;
-		this.containerName = azureConfig.getContainerName();
 	}
 	
 	@Override
 	public String uploadFile(byte[] bytes, String fileName, String contentType) {
 		repository.setContext(azureConfig.getBlobStoreContext());
 		logger.info("Upload started");
-		var message = repository.uploadFile(containerName, bytes, fileName, contentType);
+		var message = repository.uploadFile(azureConfig.getContainerName(), bytes, fileName, contentType);
 		logger.info("Upload completed");
 		
 		return message;
@@ -42,7 +40,7 @@ public class AzureObjectStoreService implements ObjectStoreService {
 	public List<BlobFile> listObjects() {
 		repository.setContext(azureConfig.getBlobStoreContext());
 		logger.info("Retrieving objects from container");
-		List<BlobFile> files = repository.listFiles(containerName);
+		List<BlobFile> files = repository.listFiles(azureConfig.getContainerName());
 		logger.info("Retrieval of objects completed");
 		
 		return files;
@@ -51,7 +49,7 @@ public class AzureObjectStoreService implements ObjectStoreService {
 	@Override
 	public InputStream getFile(String fileName) {
 		repository.setContext(azureConfig.getBlobStoreContext());
-		var inputStream = repository.downloadFile(containerName, fileName);
+		var inputStream = repository.downloadFile(azureConfig.getContainerName(), fileName);
 		
 		return inputStream;
 	}
@@ -60,7 +58,7 @@ public class AzureObjectStoreService implements ObjectStoreService {
 	public boolean deleteFile(String fileName) {
 		repository.setContext(azureConfig.getBlobStoreContext());
 		logger.info("Deletion started");
-		var status = repository.deleteFile(containerName, fileName);
+		var status = repository.deleteFile(azureConfig.getContainerName(), fileName);
 		logger.info("Deletion completed");
 		
 		return status;
@@ -70,7 +68,7 @@ public class AzureObjectStoreService implements ObjectStoreService {
 	@Override
 	public boolean isBlobExist(String fileName) {
 		repository.setContext(azureConfig.getBlobStoreContext());
-		var status = repository.isBlobExist(containerName, fileName);
+		var status = repository.isBlobExist(azureConfig.getContainerName(), fileName);
 		
 		return status;
 	}

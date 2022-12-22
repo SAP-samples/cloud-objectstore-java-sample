@@ -2,11 +2,12 @@ package com.sap.refapps.objectstore.config;
 
 import org.jclouds.ContextBuilder;
 import org.jclouds.blobstore.BlobStoreContext;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.sap.refapps.objectstore.util.CloudProviders;
+
+import io.pivotal.cfenv.core.CfEnv;
 
 /**
  * This is AWS Credentials Configuration class
@@ -15,38 +16,37 @@ import com.sap.refapps.objectstore.util.CloudProviders;
 
 @Profile("cloud-aws")
 @Configuration
-@ConfigurationProperties(prefix = "vcap.services.objectstore-service.credentials")
 public class AmazonWebServiceConfiguration {
+	
+	private static final String ACCESS_KEY_ID = "access_key_id";
+	private static final String SECRET_ACCESS_KEY = "secret_access_key";
+	private static final String BUCKET = "bucket";
+	private static final String SERVICE_LABEL = "SERVICE_LABEL";
 	
 	private String accessKeyId;
 	private String bucket;
 	private String secretAccessKey;
 	
-	public String getAccessKeyId() {
-		return accessKeyId;
-	}
-	public void setAccessKeyId(final String accessKeyId) {
-		this.accessKeyId = accessKeyId;
-	}
 	public String getBucket() {
 		return bucket;
-	}
-	public void setBucket(final String bucket) {
-		this.bucket = bucket;
-	}
-	public String getSecretAccessKey() {
-		return secretAccessKey;
-	}
-	public void setSecretAccessKey(final String secretAccessKey) {
-		this.secretAccessKey = secretAccessKey;
 	}
 
 	/**
 	 * @return blobStoreContext
 	 */
 	public BlobStoreContext getBlobStoreContext() {
+		
+		var serviceLabel = System.getenv(SERVICE_LABEL);
+		var cfenv = new CfEnv();
+		var cfService = cfenv.findServiceByLabel(serviceLabel);
+		var cfCredentials = cfService.getCredentials();
+		
+		this.accessKeyId = cfCredentials.getString(ACCESS_KEY_ID);
+		this.secretAccessKey = cfCredentials.getString(SECRET_ACCESS_KEY);
+		this.bucket = cfCredentials.getString(BUCKET);
+		
 		return ContextBuilder.newBuilder(CloudProviders.PROVIDER_AWS.toString())
-				.credentials(this.getAccessKeyId(), this.getSecretAccessKey())
+				.credentials(this.accessKeyId, this.secretAccessKey)
 				.buildView(BlobStoreContext.class);
 	}
 	
