@@ -20,42 +20,40 @@ public class AWSObjectStoreService implements ObjectStoreService {
 
 	private final AmazonWebServiceConfiguration awsConfig;
 	private final ObjectStoreRepository repository;
-	private final String containerName;
 	private static Logger logger = LoggerFactory.getLogger(AWSObjectStoreService.class);
 
 	@Autowired
 	public AWSObjectStoreService(final AmazonWebServiceConfiguration awsConfig, ObjectStoreRepository repository) {
 		this.awsConfig = awsConfig;
 		this.repository = repository;
-		this.containerName = awsConfig.getBucket();
 	}
 
 	@Override
 	public String uploadFile(byte[] bytes, String fileName, String contentType) {
 		repository.setContext(awsConfig.getBlobStoreContext());
 		logger.info("Upload started");
-		var message = repository.uploadFile(containerName, bytes, fileName, contentType);
+		var message = repository.uploadFile(awsConfig.getBucket(), bytes, fileName, contentType);
 		logger.info("upload completed");
 		return message;
 	}
 
 	public List<BlobFile> listObjects() {
 		repository.setContext(awsConfig.getBlobStoreContext());
-		List<BlobFile> files = repository.listFiles(containerName);
+		List<BlobFile> files = repository.listFiles(awsConfig.getBucket());
 		return files;
 	}
 
 	@Override
 	public InputStream getFile(String fileName) {
 		repository.setContext(awsConfig.getBlobStoreContext());
-		var inputStream = repository.downloadFile(containerName, fileName);
+		var inputStream = repository.downloadFile(awsConfig.getBucket(), fileName);
 		return inputStream;
 	}
 
 	@Override
 	public boolean deleteFile(String fileName) {
 		repository.setContext(awsConfig.getBlobStoreContext());
-		var status = repository.deleteFile(containerName, fileName);
+		var status = repository.deleteFile(awsConfig.getBucket(), fileName);
 		return status;
 
 	}
@@ -63,7 +61,7 @@ public class AWSObjectStoreService implements ObjectStoreService {
 	@Override
 	public boolean isBlobExist(String fileName) {
 		repository.setContext(awsConfig.getBlobStoreContext());
-		var status = repository.isBlobExist(containerName, fileName);
+		var status = repository.isBlobExist(awsConfig.getBucket(), fileName);
 		return status;
 	}
 }
