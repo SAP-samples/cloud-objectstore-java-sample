@@ -3,7 +3,7 @@ applications:
 - name: <unique_id>-objectstore-sample-svc
   memory: 2G
   buildpack: sap_java_buildpack
-  path: target/objectstore-sample-1.1.2.jar
+  path: target/objectstore-sample-1.1.1.jar
   env:
     JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
     JBP_CONFIG_SAP_MACHINE_JRE: '{ jre: { version: "11.+" } }'

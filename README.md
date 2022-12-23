@@ -67,7 +67,7 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
 
 
 ## Requirements
-- [Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Java 11](https://sap.github.io/SapMachine/)
 - [Apache Maven 3.3+](https://maven.apache.org/download.cgi)
 - [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
 - SAP Business Technology Platform Global account
@@ -77,9 +77,9 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
 ## Download and Installation
 
 #### Build the Application
-- [Clone](https://help.github.com/articles/cloning-a-repository/) the application `objectstore-sample` to your system
+- [Clone](https://help.github.com/articles/cloning-a-repository/) the application `cloud-objectstore-java-sample` to your system
 
-   Clone URL :  `https://github.wdf.sap.corp/refapps/objectstore-sample.git`
+   Clone URL :  `https://github.com/SAP-samples/cloud-objectstore-java-sample.git`
 - Navigate to the root folder of the application and run the below maven command to build the application:
   ```
   mvn clean install
@@ -118,20 +118,20 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
 
        `cf create-service objectstore azure-standard objectstore-service`
 
-      > Important: <b>*Please don't change the service instance name i.e. `objectstore-service`*</b>. In case you want to choose a user defined name for the service instance other than `objectstore-service`, then make sure to use the same name at the given location: `@ConfigurationProperties(prefix = "vcap.services.<objectstore-service>.credentials")` in the following configuration classes : [AmazonWebServiceConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/AmazonWebServiceConfiguration.java), [GoogleCloudPlatformConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/GoogleCloudPlatformConfiguration.java) and [AzureStorageConfiguration.java](https://github.com/SAP-samples/cloud-objectstore-java-sample/blob/master/src/main/java/com/sap/refapps/objectstore/config/AzureStorageConfiguration.java)
 
-  3. Edit manifest.yml file. Replace the `<unique_id>` placeholder with any unique string. You can use your *SAP User ID* so that the host name is unique in the CF landscape. You can find your *SAP User ID* in [your sap.com profile](https://people.sap.com/#personal_info).
+  3. Edit manifest.yml file. Replace the `<unique_id>` placeholder with any unique string. You can use your *SAP User ID* so that the application name is unique in the CF landscape. You can find your *SAP User ID* in [your sap.com profile](https://people.sap.com/#personal_info).
 
   ~~~
     ---
     applications:
-    - name: objectstore-sample-svc
-     ------------------------------------------
-    | host: <unique_id>-objectstore-sample-svc |
-     ------------------------------------------
+    - name: <unique_id>-objectstore-sample-svc
       memory: 2G
-      buildpack: https://github.com/cloudfoundry/java-buildpack.git
-      path: target/objectstore-sample-1.0.0.jar
+      buildpack: sap_java_buildpack
+      path: target/objectstore-sample-1.1.1.jar
+	  env:
+        JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
+        JBP_CONFIG_SAP_MACHINE_JRE: '{ jre: { version: "11.+" } }'
+        SERVICE_LABEL: "objectstore"
       services:
         - objectstore-service
   ~~~
@@ -165,7 +165,7 @@ A successful upload operation gives the following response :
 
 Status: 202
 
-Response Body: `<uploaded_filename> uploaded successfully`
+Response Body: `<file-name> is successfully uploaded.`
 
 
 ##### List all the files / objects
@@ -234,7 +234,7 @@ A successful upload operation gives the following response :
 
 Status: 200
 
-Response Body: `<file-name> deleted from ObjectStore.`
+Response Body: `<file-name> is successfully deleted.`
 
 ## How to obtain support
 
