@@ -119,7 +119,7 @@ For more information about the dependencies please refer [pom.xml file](./pom.xm
        `cf create-service objectstore azure-standard objectstore-service`
 
 
-  3. Edit manifest.yml file. Replace the `<unique_id>` placeholder with any unique string. You can use your *SAP User ID* so that the host name is unique in the CF landscape. You can find your *SAP User ID* in [your sap.com profile](https://people.sap.com/#personal_info).
+  3. Edit manifest.yml file. Replace the `<unique_id>` placeholder with any unique string. You can use your *SAP User ID* so that the application name is unique in the CF landscape. You can find your *SAP User ID* in [your sap.com profile](https://people.sap.com/#personal_info).
 
   ~~~
     ---
