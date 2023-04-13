@@ -22,11 +22,13 @@ public class AzureStorageConfiguration {
 	private static final String ACCOUNT_NAME = "account_name";
 	private static final String SAS_TOKEN = "sas_token";
 	private static final String CONTAINER_NAME = "container_name";
+	private static final String CONTAINER_URI = "container_uri";
 	private static final String SERVICE_LABEL = "SERVICE_LABEL";
 	
 	private String accountName;
 	private String containerName;
 	private String sasToken;
+	private String containerUri;
 
 	public String getContainerName() {
 		return containerName;
@@ -43,8 +45,11 @@ public class AzureStorageConfiguration {
 		this.accountName = cfCredentials.getString(ACCOUNT_NAME);
 		this.sasToken = cfCredentials.getString(SAS_TOKEN);
 		this.containerName = cfCredentials.getString(CONTAINER_NAME);
+		this.containerUri = cfCredentials.getString(CONTAINER_URI);
 		
+		String blobEndPoint = containerUri.replace("/" + containerName, "");
 		BlobStoreContext blobStoreContext = ContextBuilder.newBuilder(CloudProviders.PROVIDER_AZURE.toString())
+				.endpoint(blobEndPoint)
 				.credentials(this.accountName, this.sasToken)
 				.buildView(BlobStoreContext.class); 
 		
