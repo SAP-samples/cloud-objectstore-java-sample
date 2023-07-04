@@ -161,7 +161,7 @@ Request Body : form-data with key-value pair. Pass the name of the key as `file`
 
 ![Alt text](./documents/postRequest.png "post request")
 
-A successful GET operation gives the following response : 
+A successful upload operation gives the following response : 
 
 Status: 202
 
@@ -178,7 +178,7 @@ EndPoint URL :   `https://<application URL>/objectstorage.svc/api/v1/storage/`
 
 Content-Type : `application/json`
 
-A successful upload operation gives the following response :
+A successful GET operation gives the following response :
 
 Status: 200
 
