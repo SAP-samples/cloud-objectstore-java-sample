@@ -161,7 +161,7 @@ Request Body : form-data with key-value pair. Pass the name of the key as `file`
 
 ![Alt text](./documents/postRequest.png "post request")
 
-A successful upload operation gives the following response : 
+A successful GET operation gives the following response : 
 
 Status: 202
 
