@@ -178,7 +178,7 @@ EndPoint URL :   `https://<application URL>/objectstorage.svc/api/v1/storage/`
 
 Content-Type : `application/json`
 
-A successful upload operation gives the following response :
+A successful GET operation gives the following response :
 
 Status: 200
 
