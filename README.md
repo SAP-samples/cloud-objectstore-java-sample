@@ -5,7 +5,7 @@
 Object Store reference application is built to showcase the method of developing a single code-line multi cloud application consuming Object Store Service of SAP Business Technology Platform (SAP BTP) Cloud Foundry Environment.
 
 ## Description
-Object Store service enables the storage and management of objects, which involves creation, upload, download, and deletion of objects. SAP provides Object Store Service on its SAP Business Technology Platform running on different IaaS providers like Amazon Web Service, Azure, Google Cloud Platform. [Please click here for more information on Object Store Service](https://help.sap.com/viewer/2ee77ef7ea4648f9ab2c54ee3aef0a29/Cloud/en-US/9f82aa99c6fb443495495a67b8e0f924.html).
+Object Store service enables the storage and management of objects, which involves creation, upload, download, and deletion of objects. SAP provides Object Store Service on its SAP Business Technology Platform running on different IaaS providers like Amazon Web Service, Azure, Google Cloud Platform. [Please click here for more information on Object Store Service](https://help.sap.com/docs/object-store/object-store-service-on-sap-btp/what-is-object-store).
 
 Though the Object Store Service is provided by SAP on multiple IaaS providers, the way to connect to and use the service varies for each IaaS provider due to changes in the structure of credentials and in the configurations. Writing a single code-line application that works seamlessly on all these IaaS providers is a challenge that many developers face. 
 
