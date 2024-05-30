@@ -161,6 +161,8 @@ Request Body : form-data with key-value pair. Pass the name of the key as `file`
 
 ![Alt text](./documents/postRequest.png "post request")
 
+> The file upload option may differ version by version of postman. So keeping the above screenshot as generic, kindly adopt accordingly.
+
 A successful upload operation gives the following response : 
 
 Status: 202
@@ -241,8 +243,8 @@ Response Body: `<file-name> is successfully deleted.`
 In case you find a bug, or you need additional support, please open an issue here in GitHub.
 
 ## Known Issues
-- Using InpuStream instead of ByteArray to upload large files to make the read operation faster causes issues. For more information see [here](https://issues.apache.org/jira/browse/JCLOUDS-1451). 
+- Using InputStream instead of ByteArray to upload large files to make the read operation faster causes issues. For more information see [here](https://issues.apache.org/jira/browse/JCLOUDS-1451). 
 
 ## License
 
-Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt)file.
+Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
