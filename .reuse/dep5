@@ -1,11 +1,11 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: cloud-objectstore-java-sample
-Upstream-Contact: Singh, Abhinav <abhinav.singh07@sap.com>
+Upstream-Contact: ospo@sap.com
 Source: https://github.com/SAP-samples/cloud-objectstore-java-sample
-Disclaimer: The code in this project may include calls to APIs (“API Calls”) of
+Disclaimer: The code in this project may include calls to APIs ("API Calls") of
  SAP or third-party products or services developed outside of this project
- (“External Products”).
- “APIs” means application programming interfaces, as well as their respective
+ ("External Products").
+ "APIs" means application programming interfaces, as well as their respective
  specifications and implementing code that allows software to communicate with
  other software.
  API Calls to External Products are not licensed under the open source license
@@ -16,7 +16,7 @@ Disclaimer: The code in this project may include calls to APIs (“API Calls”)
  alter, expand or supersede any terms of the applicable additional agreements.
  If you have a valid license agreement with SAP for the use of a particular SAP
  External Product, then you may make use of any API Calls included in this
- project’s code for that SAP External Product, subject to the terms of such
+ project's code for that SAP External Product, subject to the terms of such
  license agreement. If you do not have a valid license agreement for the use of
  a particular SAP External Product, then you may only make use of any API Calls
  in this project for that SAP External Product for your internal, non-productive
@@ -24,8 +24,6 @@ Disclaimer: The code in this project may include calls to APIs (“API Calls”)
  you any rights to use or access any SAP External Product, or provide any third
  parties the right to use of access any SAP External Product, through API Calls.
 
-Files: * 
-Copyright: 2020 SAP SE or an SAP affiliate company and cloud-objectstore-java-sample contributors
+Files: *
+Copyright:  2023 SAP SE or an SAP affiliate company and btp-developer-guide-cap contributors
 License: Apache-2.0
-© 2020 GitHub, Inc.
-
